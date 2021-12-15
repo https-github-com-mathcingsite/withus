@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+예시 mapper
+ -->
+<mapper namespace="com.project.withus.model.mapper.DemoMapper">
+
+	<insert id="writeDemo" parameterType="demoDto">
+		<!-- 쿼리 내용 -->
+	</insert>
+	
+	<select id="selectDemo" parameterType="Map" resultType="demoDto">
+		<!-- 쿼리내용 -->
+	</select>
+	
+	
+</mapper>

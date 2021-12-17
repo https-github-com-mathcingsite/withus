@@ -11,7 +11,7 @@
     </v-tabs>
     <v-spacer></v-spacer>
     <!-- 로그인을 하지 않았을 때 !-->
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-if="!userInfo" v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <div color="primary" dark v-bind="attrs" v-on="on" style="width: 200px">
           로그인 / 회원가입
@@ -40,7 +40,7 @@
                   dark
                   @click="emailLogin = true"
                 >
-                  이메일 로그인</v-btn
+                  아이디 로그인</v-btn
                 >
               </v-col>
               <v-col cols="12">
@@ -57,6 +57,7 @@
                   class="rounded-0"
                   outlined
                   required
+                  v-model="user.userId"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
@@ -66,10 +67,18 @@
                   class="rounded-0"
                   outlined
                   required
+                  v-model="user.userPwd"
                 ></v-text-field>
               </v-col>
-              <v-btn class="rounded-0" color="#000000" x-large block dark>
-                Login</v-btn
+              <v-btn
+                class="rounded-0"
+                color="#000000"
+                @click="Login"
+                x-large
+                block
+                dark
+              >
+                로그인</v-btn
               >
             </v-row>
             <v-row v-if="userSignUp">
@@ -127,7 +136,7 @@
       </v-card>
     </v-dialog>
     <!-- 로그인을 했을때 !-->
-    <v-badge v-if="user" borred dot left color="error">
+    <v-badge v-if="userInfo" borred dot left color="error">
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn color="grey lighten-1" rounded dark v-bind="attrs" v-on="on">
@@ -145,6 +154,9 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
+const userStore = "userStore";
 export default {
   data() {
     return {
@@ -157,7 +169,27 @@ export default {
       dialog: false,
       emailLogin: false,
       userSignUp: false,
+      user: {
+        userId: null,
+        userPwd: null,
+      },
     };
+  },
+  computed: {
+    ...mapState(userStore, ["isLogin", "isLoginError", "userInfo"]),
+  },
+  methods: {
+    ...mapActions(userStore, ["userLogin", "getUserInfo"]),
+    async Login() {
+      await this.userLogin(this.user);
+      let token = sessionStorage.getItem("access-token");
+      if (this.isLogin) {
+        console.log("로그인 완료");
+        await this.getUserInfo(token);
+        this.$router.push({ name: "Home" }).catch(() => {});
+        this.dialog = false;
+      }
+    },
   },
 };
 </script>

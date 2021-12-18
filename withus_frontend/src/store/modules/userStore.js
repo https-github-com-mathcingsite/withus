@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 
-import { login, getById } from "@/api/user.js";
+import { login, getById, register } from "@/api/user.js";
 
 const userStore = {
   namespaced: true,
@@ -8,6 +8,7 @@ const userStore = {
     isLogin: false,
     isLoginError: false,
     userInfo: null,
+    isRegist: false,
   },
   getters: {
     checkUserInfo: function (state) {
@@ -24,6 +25,9 @@ const userStore = {
     SET_USER_INFO: (state, userInfo) => {
       state.isLogin = true;
       state.userInfo = userInfo;
+    },
+    SET_REGIST: (state, isRegist) => {
+      state.isRegist = isRegist;
     },
   },
   actions: {
@@ -44,9 +48,9 @@ const userStore = {
         () => {}
       );
     },
-    getUserInfo({ commit }, token) {
+    async getUserInfo({ commit }, token) {
       let decode_token = jwt_decode(token);
-      getById(
+      await getById(
         decode_token.userid,
         ({ data }) => {
           if (data.message === "success") {
@@ -59,6 +63,16 @@ const userStore = {
           console.log(error);
         }
       );
+    },
+    async userRegister({ commit }, user) {
+      console.log(user);
+      await register(user, ({ data }) => {
+        if (data === "success") {
+          commit("SET_REGIST", true);
+        } else {
+          commit("SET_REGIST", false);
+        }
+      });
     },
   },
 };

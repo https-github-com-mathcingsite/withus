@@ -2,7 +2,8 @@ import { apiInstance } from "./index.js";
 
 const api = apiInstance();
 
-async function registerUser(user, success, fail) {
+async function register(user, success, fail) {
+  console.log(JSON.stringify(user));
   await api.post(`/user`, JSON.stringify(user)).then(success).catch(fail);
 }
 
@@ -15,4 +16,4 @@ async function login(user, success, fail) {
   await api.post(`/user/login`, JSON.stringify(user)).then(success).catch(fail);
 }
 
-export { registerUser, getById, login };
+export { register, getById, login };

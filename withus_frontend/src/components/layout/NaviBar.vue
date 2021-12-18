@@ -89,6 +89,7 @@
                   class="rounded-0"
                   outlined
                   required
+                  v-model="newUser.userId"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
@@ -98,6 +99,7 @@
                   class="rounded-0"
                   outlined
                   required
+                  v-model="newUser.userPwd"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
@@ -107,6 +109,7 @@
                   class="rounded-0"
                   outlined
                   required
+                  v-model="newUser.userName"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
@@ -116,9 +119,17 @@
                   class="rounded-0"
                   outlined
                   required
+                  v-model="newUser.email"
                 ></v-text-field>
               </v-col>
-              <v-btn class="rounded-0" color="#000000" x-large block dark>
+              <v-btn
+                class="rounded-0"
+                color="#000000"
+                x-large
+                block
+                dark
+                @click="registerUser"
+              >
                 회원가입</v-btn
               >
             </v-row>
@@ -173,13 +184,19 @@ export default {
         userId: null,
         userPwd: null,
       },
+      newUser: {
+        userId: null,
+        userName: null,
+        userPwd: null,
+        email: null,
+      },
     };
   },
   computed: {
-    ...mapState(userStore, ["isLogin", "isLoginError", "userInfo"]),
+    ...mapState(userStore, ["isLogin", "isLoginError", "userInfo", "isRegist"]),
   },
   methods: {
-    ...mapActions(userStore, ["userLogin", "getUserInfo"]),
+    ...mapActions(userStore, ["userLogin", "getUserInfo", "userRegister"]),
     async Login() {
       await this.userLogin(this.user);
       let token = sessionStorage.getItem("access-token");
@@ -188,6 +205,14 @@ export default {
         await this.getUserInfo(token);
         this.$router.push({ name: "Home" }).catch(() => {});
         this.dialog = false;
+      }
+    },
+    async registerUser() {
+      await this.userRegister(this.newUser);
+      if (this.isRegist) {
+        console.log("회원가입 완료");
+      } else {
+        console.log("회원가입 실패");
       }
     },
   },

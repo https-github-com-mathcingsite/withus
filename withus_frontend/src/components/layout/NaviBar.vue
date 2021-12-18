@@ -156,7 +156,11 @@
         </template>
         <v-list>
           <v-list-item v-for="(menu, index) in menues" :key="index">
-            <v-list-item-title>{{ menu.title }}</v-list-item-title>
+            <v-list-item-title
+              ><router-link :to="{ name: 'MyPage' }" class="link">{{
+                menu.title
+              }}</router-link></v-list-item-title
+            >
           </v-list-item>
         </v-list>
       </v-menu>

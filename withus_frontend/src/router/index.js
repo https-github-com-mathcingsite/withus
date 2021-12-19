@@ -2,8 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 
-import Member from "@/views/Member.vue";
-import MemberMyPage from "@/components/member/MemberMyPage.vue";
+import User from "@/views/User.vue";
+import UserMyPage from "@/components/user/UserMyPage.vue";
+import UserUpdate from "@/components/user/UserUpdate.vue";
 
 Vue.use(VueRouter);
 
@@ -31,13 +32,18 @@ const routes = [
   },
   {
     path: "/user",
-    name: "Member",
-    component: Member,
+    name: "User",
+    component: User,
     children: [
       {
         path: "usermypage",
         name: "UserMyPage",
-        component: MemberMyPage,
+        component: UserMyPage,
+      },
+      {
+        path: "userupdate",
+        name: "UserUpdate",
+        component: UserUpdate,
       },
     ],
   },

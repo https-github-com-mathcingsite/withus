@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 
-import { login, getById, register } from "@/api/user.js";
+import { login, getById, register, modifyUser } from "@/api/user.js";
 
 const userStore = {
   namespaced: true,
@@ -71,6 +71,18 @@ const userStore = {
           commit("SET_REGIST", true);
         } else {
           commit("SET_REGIST", false);
+        }
+      });
+    },
+    updateUser({ commit }, user) {
+      console.log(user);
+      modifyUser(user, (data) => {
+        if (data === "success") {
+          commit("SET_USER_INFO", user);
+          console.log("사용자 정보 수정 성공");
+        } else {
+          console.log("사용자 정보 수정 실패");
+          console.log(data);
         }
       });
     },

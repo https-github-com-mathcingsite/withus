@@ -19,6 +19,17 @@
 		from user
 		where userid = #{userId}
 	</select>
-	
-	
+
+	<update id="updateUser" parameterType="userDto">
+		update user
+		set mbti = #{mbti}
+		where userid = #{userId}
+	</update>
+<!-- 	<update id="updateUser" parameterType="userDto"> -->
+<!-- 		update user -->
+<!-- 		<trim prefix="set" suffixOverrides=","> -->
+<!-- 			<if test="mbti != null">mbti = #{mbti},</if> -->
+<!-- 		</trim> -->
+<!-- 		where userid = #{userId} -->
+<!-- 	</update> -->
 </mapper>

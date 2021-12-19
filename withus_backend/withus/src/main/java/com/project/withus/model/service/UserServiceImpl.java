@@ -2,6 +2,7 @@ package com.project.withus.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.withus.model.UserDto;
 import com.project.withus.model.mapper.UserMapper;
@@ -28,4 +29,9 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUserInfo(userId);
 	};
 	
+	@Override
+	@Transactional
+	public boolean modifyUser(UserDto userDto) throws Exception {
+		return userMapper.updateUser(userDto);
+	}
 }

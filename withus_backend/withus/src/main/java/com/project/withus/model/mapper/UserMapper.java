@@ -8,4 +8,6 @@ public interface UserMapper {
 	public int insertUser(UserDto userDto) throws SQLException;
 	public UserDto login(UserDto userDto) throws SQLException;
 	public UserDto getUserInfo(String userId);
+	public boolean updateUser(UserDto user) throws SQLException;
 }
+

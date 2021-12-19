@@ -147,10 +147,12 @@
       </v-card>
     </v-dialog>
     <!-- 로그인을 했을때 !-->
+
     <v-badge v-if="userInfo" borred dot left color="error">
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn color="grey lighten-1" rounded dark v-bind="attrs" v-on="on">
+            {{ userInfo.userId }}
             <v-icon>mdi-account-circle</v-icon>
           </v-btn>
         </template>

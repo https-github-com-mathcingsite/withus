@@ -146,7 +146,7 @@
         <v-list>
           <v-list-item v-for="(menu, index) in menues" :key="index">
             <v-list-item-title
-              ><router-link :to="{ name: 'MyPage' }" class="link">{{
+              ><router-link :to="{ name: 'UserMyPage' }" class="link">{{
                 menu.title
               }}</router-link></v-list-item-title
             >

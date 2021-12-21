@@ -3,7 +3,6 @@ package com.project.withus.model;
 import java.util.Date;
 
 public class UserDto {
-	int no;
 	String userId;
 	String userPwd;
 	String userName;
@@ -13,12 +12,6 @@ public class UserDto {
 	String mbti;
 	String userType;
 	String report;
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
 	public String getUserId() {
 		return userId;
 	}
@@ -75,7 +68,7 @@ public class UserDto {
 	}
 	@Override
 	public String toString() {
-		return "UserDto [no=" + no + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
+		return "UserDto [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
 				+ ", email=" + email + ", regDate=" + regDate + ", auth=" + auth + ", mbti=" + mbti + ", userType="
 				+ userType + ", report=" + report + "]";
 	}

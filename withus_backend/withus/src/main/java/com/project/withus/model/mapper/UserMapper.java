@@ -9,5 +9,6 @@ public interface UserMapper {
 	public UserDto login(UserDto userDto) throws SQLException;
 	public UserDto getUserInfo(String userId);
 	public boolean updateUser(UserDto user) throws SQLException;
+	public UserDto getOneUser(String userId) throws SQLException;
 }
 

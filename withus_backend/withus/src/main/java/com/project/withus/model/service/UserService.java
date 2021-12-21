@@ -8,4 +8,5 @@ public interface UserService {
 	public UserDto login(UserDto userDto) throws Exception;
 	UserDto getUserInfo(String userId);
 	public boolean modifyUser(UserDto userDto) throws Exception;
+	public UserDto getUser(String userId) throws Exception;
 }

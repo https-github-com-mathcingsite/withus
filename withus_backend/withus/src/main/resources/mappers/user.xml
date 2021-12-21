@@ -32,4 +32,11 @@
 <!-- 		</trim> -->
 <!-- 		where userid = #{userId} -->
 <!-- 	</update> -->
+
+	<!-- 사용자 상세 조회 -->
+	<select id="getOneUser" parameterType="String" resultType="userDto">
+		select *
+		  from user
+		 where userid = #{userId}
+	</select>
 </mapper>

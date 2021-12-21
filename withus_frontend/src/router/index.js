@@ -38,11 +38,13 @@ const routes = [
       {
         path: "usermypage",
         name: "UserMyPage",
+        beforeEnter: loginCheck,
         component: UserMyPage,
       },
       {
         path: "userupdate",
         name: "UserUpdate",
+        beforeEnter: loginCheck,
         component: UserUpdate,
       },
     ],

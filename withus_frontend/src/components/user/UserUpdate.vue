@@ -78,6 +78,7 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
+import { getUser } from "@/api/user";
 const userStore = "userStore";
 
 export default {
@@ -116,7 +117,16 @@ export default {
       (this.user.userPwd = this.userInfo.userPwd),
       (this.user.userName = this.userInfo.userName),
       (this.user.email = this.userInfo.email),
-      (this.user.mbti = this.userInfo.mbti);
+      (this.user.mbti = this.userInfo.mbti),
+      getUser(
+        this.$route.params.userId,
+        ({ data }) => {
+          console.log(data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   },
   watch: {
     name() {
@@ -140,7 +150,10 @@ export default {
         if (!this.form[f]) {
           this.formHasErrors = true;
           this.updateUser(this.user);
-          this.$router.push({ name: "UserMyPage" });
+          // this.$router.push({ name: "UserMyPage" });
+          if (this.$route.path !== "UserMyPage") {
+            this.$router.push({ name: "UserMyPage" });
+          }
           // this.$router.go(this.$router.currentRoute);
         }
 

@@ -19,5 +19,7 @@ async function login(user, success, fail) {
 function modifyUser(user, success, fail) {
   api.put(`/user`, JSON.stringify(user)).then(success).catch(fail);
 }
-
-export { register, getById, login, modifyUser };
+function getUser(userid, success, fail) {
+  api.get(`/user/${userid}`).then(success).catch(fail);
+}
+export { register, getById, login, modifyUser, getUser };

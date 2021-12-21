@@ -76,7 +76,7 @@ const userStore = {
     },
     updateUser({ commit }, user) {
       console.log(user);
-      modifyUser(user, (data) => {
+      modifyUser(user, ({ data }) => {
         if (data === "success") {
           commit("SET_USER_INFO", user);
           console.log("사용자 정보 수정 성공");

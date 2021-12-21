@@ -105,4 +105,10 @@ public class UserController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "사용자 정보 한 개 보기", notes = "사용자 번호에 해당하는 사용자의 정보를 반환한다.", response = UserDto.class)
+	@GetMapping("/{userid}")
+	public ResponseEntity<UserDto> getUser(@PathVariable("userid") @ApiParam(value = "얻어올 사용자의 번호.", required = true) String userId) throws Exception {
+		return new ResponseEntity<UserDto>(userService.getUser(userId), HttpStatus.OK);
+	}
+	
 }

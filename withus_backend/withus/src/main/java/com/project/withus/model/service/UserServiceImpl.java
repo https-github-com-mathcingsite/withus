@@ -34,4 +34,9 @@ public class UserServiceImpl implements UserService {
 	public boolean modifyUser(UserDto userDto) throws Exception {
 		return userMapper.updateUser(userDto);
 	}
+	
+	@Override
+	public UserDto getUser(String userId) throws Exception {
+		return userMapper.getOneUser(userId);
+	}
 }

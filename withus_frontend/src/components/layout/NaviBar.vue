@@ -147,24 +147,44 @@
       </v-card>
     </v-dialog>
     <!-- 로그인을 했을때 !-->
-    <v-badge v-if="userInfo" borred dot left color="error">
-      <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn color="grey lighten-1" rounded dark v-bind="attrs" v-on="on">
-            <v-icon>mdi-account-circle</v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="(menu, index) in menues" :key="index">
-            <v-list-item-title
-              ><router-link :to="{ name: 'MyPage' }" class="link">{{
-                menu.title
-              }}</router-link></v-list-item-title
-            >
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-badge>
+    <!-- <v-badge v-if="userInfo" borred dot left color="error"> -->
+    <v-menu offset-y>
+      <template v-slot:activator="{ on, attrs }">
+        <div
+          color="primary"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          style="width: 100px"
+          class="ml-5"
+        >
+          로그아웃
+        </div>
+        <div
+          color="primary"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          style="width: 100px"
+          class="ml-5"
+        >
+          {{ userInfo.userId }}
+        </div>
+        <v-btn color="grey lighten-1" rounded dark v-bind="attrs" v-on="on">
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item v-for="(menu, index) in menues" :key="index">
+          <v-list-item-title
+            ><router-link :to="{ name: 'MyPage' }" class="link">{{
+              menu.title
+            }}</router-link></v-list-item-title
+          >
+        </v-list-item>
+      </v-list>
+    </v-menu>
+    <!-- </v-badge> -->
   </v-app-bar>
 </template>
 
@@ -215,6 +235,8 @@ export default {
       await this.userRegister(this.newUser);
       if (this.isRegist) {
         console.log("회원가입 완료");
+        this.emailLogin = true;
+        this.userSignUp = false;
       } else {
         console.log("회원가입 실패");
       }

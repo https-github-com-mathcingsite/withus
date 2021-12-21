@@ -4,16 +4,10 @@ import Home from "../views/Home.vue";
 import Teams from "../views/Teams.vue";
 import TeamSearch from "@/components/main/TeamMain.vue";
 import RecruitPost from "@/components/teams/RecruitPost.vue";
-//view : import RecruitView from "@/components/teams/RecruitView.vue";
 
-<<<<<<< HEAD
-// import Member from "@/views/Member.vue";
-// import MemberMyPage from "@/components/member/MemberMyPage.vue";
-=======
 import User from "@/views/User.vue";
 import UserMyPage from "@/components/user/UserMyPage.vue";
 import UserUpdate from "@/components/user/UserUpdate.vue";
->>>>>>> 325aba03c990525b170175da6095d8ff7d186fcc
 
 Vue.use(VueRouter);
 
@@ -63,20 +57,6 @@ const routes = [
       },
     ],
   },
-<<<<<<< HEAD
-  // {
-  //   path: "/user",
-  //   name: "Member",
-  //   component: Member,
-  //   children: [
-  //     {
-  //       path: "usermypage",
-  //       name: "UserMyPage",
-  //       component: MemberMyPage,
-  //     },
-  //   ],
-  // },
-=======
   {
     path: "/user",
     name: "User",
@@ -96,7 +76,6 @@ const routes = [
       },
     ],
   },
->>>>>>> 325aba03c990525b170175da6095d8ff7d186fcc
   // 로그인 필요 페이지 예시
   {
     path: "mypage",

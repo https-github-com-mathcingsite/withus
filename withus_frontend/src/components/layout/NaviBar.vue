@@ -1,12 +1,14 @@
 <template>
-  <v-app-bar class="" app color="white">
-    <v-img width="120" src="@/assets/Logo.png"></v-img>
+  <v-app-bar class="" app color="white" dense>
+    <v-btn to="/" x-large plain>
+      <v-img width="120" src="@/assets/Logo.png"></v-img>
+    </v-btn>
     <v-app-bar-title class="font-weight-bold" style="overflow: visible"
       >프로젝트 이름</v-app-bar-title
     >
     <v-tabs class="ml-2" color="purple lighten-3">
       <v-tab>팀원 찾기</v-tab>
-      <v-tab>팀원 모집</v-tab>
+      <v-tab to="/teams/list">팀원 모집</v-tab>
       <v-tab>알림</v-tab>
     </v-tabs>
     <v-spacer></v-spacer>
@@ -168,6 +170,10 @@
       </v-menu>
     </v-badge>
   </v-app-bar>
+  <!-- 
+
+  </v-app-bar>
+  -->
 </template>
 
 <script>

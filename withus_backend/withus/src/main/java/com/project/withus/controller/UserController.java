@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -93,6 +94,21 @@ public class UserController {
 			status = HttpStatus.ACCEPTED;
 		}
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+	
+	@ApiOperation(value = "사용자 정보 수정", notes = "사용자의 정보를 수정한다. 그리고 DB 수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@PutMapping
+	public ResponseEntity<String> modifyUser(@RequestBody @ApiParam(value = "수정할 사용자 정보", required = true) UserDto userDto) throws Exception {
+		if (userService.modifyUser(userDto)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "사용자 정보 한 개 보기", notes = "사용자 번호에 해당하는 사용자의 정보를 반환한다.", response = UserDto.class)
+	@GetMapping("/{userid}")
+	public ResponseEntity<UserDto> getUser(@PathVariable("userid") @ApiParam(value = "얻어올 사용자의 번호.", required = true) String userId) throws Exception {
+		return new ResponseEntity<UserDto>(userService.getUser(userId), HttpStatus.OK);
 	}
 	
 }

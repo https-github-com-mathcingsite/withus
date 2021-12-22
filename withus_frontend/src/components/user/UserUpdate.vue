@@ -39,7 +39,7 @@
             value="user.email"
             disabled
           ></v-text-field>
-          <v-text-field
+          <!-- <v-text-field
             ref="mbti"
             v-model="user.mbti"
             value="user.mbti"
@@ -47,15 +47,23 @@
             :error-messages="errorMessages"
             label="mbti"
             required
-          ></v-text-field>
+          ></v-text-field> -->
+          <v-select
+            v-model="user.mbti"
+            value="user.mbti"
+            :items="test"
+            label="mbti"
+            dense
+          ></v-select>
         </v-card-text>
         <v-divider class="mt-12"></v-divider>
         <v-card-actions>
-          <v-btn text> Cancel </v-btn>
+          <v-btn text @click="resetForm"> 취소 </v-btn>
           <v-spacer></v-spacer>
           <v-slide-x-reverse-transition>
             <v-tooltip v-if="formHasErrors" left>
               <template v-slot:activator="{ on, attrs }">
+                <v-btn color="primary" text @click="resetForm"> Submit </v-btn>
                 <v-btn
                   icon
                   class="my-0"
@@ -85,6 +93,24 @@ export default {
   name: "UserUpdate",
   data() {
     return {
+      test: [
+        "ISTJ",
+        "ISFJ",
+        "INFJ",
+        "INTJ",
+        "ISTP",
+        "ISFP",
+        "INFP",
+        "INTP",
+        "ESTP",
+        "ESFP",
+        "ENFP",
+        "ENTP",
+        "ESTJ",
+        "ESFJ",
+        "ENFJ",
+        "ENTJ",
+      ],
       user: {
         userId: "",
         userPwd: "",
@@ -136,12 +162,7 @@ export default {
   methods: {
     ...mapActions(userStore, ["updateUser"]),
     resetForm() {
-      this.errorMessages = [];
-      this.formHasErrors = false;
-
-      Object.keys(this.form).forEach((f) => {
-        this.$refs[f].reset();
-      });
+      this.$router.push({ name: "UserMyPage" });
     },
     submit() {
       this.formHasErrors = false;
